@@ -6,18 +6,26 @@
 
 <template>
   <div>
-    首页
-    <img src="http://y.gtimg.cn/music/photo_new/T003R720x288M000002vOkVg0vI14q.jpg" alt="124">
+    <z-card
+      v-for="item in daysData"
+      :key="item.id"
+      :imgUrl="item.images[0]"
+      :title="item.title"
+    >
+    </z-card>
   </div>
 </template>
 
 <script>
 import { Row, Col } from 'element-ui';
-import indexApi from 'api@/lib/index-api';
+import indexApi from 'api@/index-api';
+import ZCard from '../../components/z-card';
+import moment from 'moment';
 
 export default {
   name: 'Main',
   components: {
+    ZCard,
     [Row.name]: Row,
     [Row.name]: Col,
   },
@@ -31,8 +39,8 @@ export default {
   },
   methods: {
     fetchList () {
-      indexApi.getIndexList('20180318').then((res) => {
-        this.daysData = res;
+      indexApi.getIndexList(moment(new Date()).format('YYYYMMDD')).then((res) => {
+        this.daysData = res.stories;
         console.log(this.daysData);
       });
     },

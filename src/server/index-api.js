@@ -3,9 +3,9 @@ import { newsApi } from './fetch';
 
 const api = {};
 
-api.getIndexList = () => {
+api.getIndexList = (data) => {
   const index = new Promise((resolve, reject) => {
-    newsApi.get().then((res) => {
+    newsApi.get(`/${data}`).then((res) => {
       resolve(res);
     }).catch((error) => {
       reject(error);

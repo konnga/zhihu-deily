@@ -29,13 +29,7 @@
       type="flex"
       justify="center"
     >
-      <el-col
-        :span="8"
-        :xs="24"
-        :sm="12"
-        :md="10"
-        :lg="8"
-      >
+      <el-col>
         <el-menu
           class="layout-nav-bar_wrap_menu"
           :default-active="activeMenu"

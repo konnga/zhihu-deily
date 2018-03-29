@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // 首页api
 export const newsApi = axios.create({
-  baseURL: '/readapi/4/news/before/20180318',
+  baseURL: '/readapi/api/4/news/before',
 });
 
 // 主题日报
@@ -11,11 +11,10 @@ export const themesApi = axios.create({
 });
 
 // newsApi响应拦截
-const newsResponesInter = (res) => {
-  console.log(res);
-  return {
-    data: res,
-  };
+const newsResponesInter = (response) => {
+  if (response.status === 200 && response.statusText === 'OK') {
+    return response.data;
+  }
 };
 
 // newsApi请求拦截
