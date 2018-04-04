@@ -1,6 +1,31 @@
 <style lang="less">
   .layout {
-    &_content {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    .active-btn-wrapper {
+      position: fixed;
+      z-index: 1002;
+      width: 100%;
+      padding: 20px;
+      color: rgb(255, 208, 75);
+      height: 1.5rem;
+      background-image: linear-gradient(0deg,transparent,rgba(0,0,0,.51) 95%);
+      cursor: pointer;
+      i {
+        font-size: 32px;
+      }
+    }
+    &-menu {
+      visibility: hidden;
+    }
+    &-menu-active {
+      visibility: visible;
+      .layout-menu-bar_wrap_menu {
+        transform: translate(0);
+      }
+    }
+    &-content {
       max-width: 960px;
       margin: 0 auto;
     }
@@ -9,14 +34,15 @@
 
 <template>
   <div class="layout">
-    <div>
+    <div class="active-btn-wrapper" @click="handleMenuActive">
+      <i :class="[isActive ? 'el-icon-circle-close' : 'el-icon-circle-plus' ]"></i>
+    </div>
+    <div :class="['layout-menu', isActive ? 'layout-menu-active' : '']">
       <menu-bar></menu-bar>
     </div>
-    <el-row type="flex" justify="center" class="layout_content">
-      <el-col :span="24">
-        <router-view></router-view>
-      </el-col>
-    </el-row>
+    <div class="layout-content">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -37,7 +63,13 @@ export default {
   data() {
     return {
       activeMenu: '/',
+      isActive: false,
     };
   },
+  methods: {
+    handleMenuActive () {
+      this.isActive = !this.isActive;
+    }
+  }
 };
 </script>
