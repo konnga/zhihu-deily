@@ -9,8 +9,8 @@
 </template>
 
 <script>
-  export default {
-    name: 'aboutus',
-  }
+export default {
+  name: 'aboutus',
+};
 </script>
 

@@ -64,6 +64,6 @@ export default {
   components: {
     [Row.name]: Row,
     [Col.name]: Col,
-  }
-}
+  },
+};
 </script>

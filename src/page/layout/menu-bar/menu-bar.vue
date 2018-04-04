@@ -52,7 +52,13 @@
         v-for="item in menuData"
       >
         <el-menu-item :index="item.path" class="layout-menu-item">
-          {{ item.name }} <span v-if="$route.path === item.path" class="arrow-wrapper"><i class="el-icon-d-arrow-right"></i></span>
+          {{ item.name }}
+          <span
+            v-if="$route.path === item.path"
+            class="arrow-wrapper"
+          >
+            <i class="el-icon-d-arrow-right"></i>
+          </span>
         </el-menu-item>
       </router-link>
     </el-menu>
@@ -78,9 +84,7 @@ export default {
       activeMenu: '/',
     };
   },
-  created () {
-    console.log(this.$route);
-    console.log(enums);
+  created() {
   }
 };
 </script>

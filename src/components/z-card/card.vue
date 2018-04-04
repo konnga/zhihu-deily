@@ -23,37 +23,38 @@
 </template>
 
 <script>
-  import { Card, Row, Col } from 'element-ui';
-  export default {
-    name: 'ZCard',
-    
-    components: {
-      [Card.name]: Card,
-      [Row.name]: Row,
-      [Col.name]: Col,
+import { Card, Row, Col } from 'element-ui';
+export default {
+  name: 'ZCard',
+  components: {
+    [Card.name]: Card,
+    [Row.name]: Row,
+    [Col.name]: Col,
+  },
+  props: {
+    imgUrl: {
+      type: String,
+      default: '',
     },
-    props: {
-      imgUrl: {
-        type: String,
-        default: '',
-      },
-      title: {
-        type: String,
-        default: '',
-      },
-      content: {
-        type: String,
-        default: ''
-      },
-      model: {
-        type: String,
-        default: 'vertical'
-      }
+    title: {
+      type: String,
+      default: '',
     },
-    computed: {
-      classes () {
-        return `z-card ${this.model === 'horizontal' ? 'z-card-horizontal' : ''}`;
-      }
+    content: {
+      type: String,
+      default: ''
+    },
+    mode: {
+      type: String,
+      default: 'vertical'
     }
-  }
+  },
+  computed: {
+    classes () {
+      return `z-card ${this.mode === 'horizontal' ? 'z-card-horizontal' : ''}`;
+    }
+  },
+  methods: {
+  },
+};
 </script>

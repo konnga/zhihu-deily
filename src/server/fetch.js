@@ -1,20 +1,17 @@
 import axios from 'axios';
 
-// 首页api
-export const newsApi = axios.create({
-  baseURL: '/readapi/api/4/news/before',
-});
-
-// 主题日报
-export const themesApi = axios.create({
-  baseURL: '/readapi?uri=https://news-at.zhihu.com/api/4/themes',
+// 公共api
+const commApi = axios.create({
+  baseURL: '/readapi/api',
 });
 
 // newsApi响应拦截
 const newsResponesInter = (response) => {
+  let data;
   if (response.status === 200 && response.statusText === 'OK') {
-    return response.data;
+    data = response.data;
   }
+  return data;
 };
 
 // newsApi请求拦截
@@ -22,4 +19,6 @@ const newsRquestInter = (error) => {
   return Promise.reject(`网络异常: ${error}`);
 };
 
-newsApi.interceptors.response.use(newsResponesInter, newsRquestInter);
+commApi.interceptors.response.use(newsResponesInter, newsRquestInter);
+
+export default commApi;

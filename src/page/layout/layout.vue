@@ -3,6 +3,7 @@
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
+    background-color: rgba(249, 250, 255, 100);
     .active-btn-wrapper {
       position: fixed;
       z-index: 1002;
@@ -50,7 +51,6 @@
 import { Row, Col, Menu, MenuItem } from 'element-ui';
 import MenuBar from './menu-bar/menu-bar';
 
-
 export default {
   name: 'layout',
   components: {
@@ -67,9 +67,10 @@ export default {
     };
   },
   methods: {
-    handleMenuActive () {
+    handleMenuActive() {
+      console.log(this.$store.state);
       this.isActive = !this.isActive;
-    }
-  }
+    },
+  },
 };
 </script>

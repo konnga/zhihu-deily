@@ -1,3 +1,7 @@
 import ZCard from './card';
+import imgCard from './img-card';
 
-export default ZCard;
+export {
+  ZCard,
+  imgCard,
+};

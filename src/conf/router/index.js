@@ -33,6 +33,13 @@ const routes = [
           require(['../../page/about/aboutus.vue'], resolve);
         },
       },
+      {
+        path: '/articles',
+        name: 'articles',
+        component: (resolve) => {
+          require(['../../page/articles/articles.vue'], resolve);
+        },
+      },
     ],
   },
 ].concat(_base);
