@@ -39,7 +39,7 @@ export default {
   props: {
     id: {
       type: Number,
-      default: '',
+      default: 0,
     },
     imgUrl: {
       type: String,
@@ -60,7 +60,9 @@ export default {
   },
   methods: {
     handleClick() {
-      this.$router.push({name: 'details', query: { id: this.id }})
+      if (this.id) {
+        this.$router.push({name: 'details', query: { id: this.id }})
+      }
     }
   }
 };
