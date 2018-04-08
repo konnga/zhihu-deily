@@ -8,7 +8,7 @@
     bottom: 0;
     padding: 0;
     &_wrap_menu {
-        padding-top: 4%;
+        padding-top: 3rem;
         float: left;
         width: 30%;
         height: 100%;
@@ -39,10 +39,11 @@
 <template>
   <div class="layout-menu-bar">
     <el-menu
+      @select="handleMenuSelect"
       class="layout-menu-bar_wrap_menu"
       mode="vertical"
       :default-active="activeMenu"
-      background-color="#2d6ac5"
+      background-color="#5b7492"
       text-color="#fff"
       active-text-color="#ffd04b"
     >
@@ -54,7 +55,7 @@
         <el-menu-item :index="item.path" class="layout-menu-item">
           {{ item.name }}
           <span
-            v-if="$route.path === item.path"
+            v-if="$route.fullPath === item.path"
             class="arrow-wrapper"
           >
             <i class="el-icon-d-arrow-right"></i>
@@ -84,7 +85,10 @@ export default {
       activeMenu: '/',
     };
   },
-  created() {
+  methods: {
+    handleMenuSelect() {
+      this.$emit('menuSelect');
+    }
   }
 };
 </script>

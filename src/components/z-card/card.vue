@@ -3,10 +3,17 @@
     display: flex;
     justify-content: start;
   }
+  .z-card {
+    margin: 10px 0;
+    img {
+      width: 6rem;
+      height: 100%;
+    }
+  }
 </style>
 
 <template>
-  <el-card>
+  <el-card class="z-card">
     <div :class="classes">
       <div class="z-card-img">
         <img :src="imgUrl" alt="" />

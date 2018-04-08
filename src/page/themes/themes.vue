@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { Row, Col } from 'element-ui';
+import { Row, Col, Loading } from 'element-ui';
 import moment from 'moment';
 import indexApi from 'api@/index-api';
 import { ZCard, imgCard } from '../../components/z-card';
@@ -54,9 +54,15 @@ export default {
   },
   data() {
     return {
+      loading: true,
       themesData: [],
       carouselList: [],
     };
+  },
+  watch: {
+    '$route' (to, from) {
+      this.fetchList();
+    }
   },
   created() {
     this.fetchList();
@@ -68,13 +74,22 @@ export default {
       });
     },
     fetchList() {
+      const loader =  Loading.service(
+        { 
+          background: '#ddd',
+          fullscreen: true,
+          text: '加载中...'
+        }
+      );
       this.getCarouselNews();
-      indexApi.getThemesById(this.$route.query.id).then((res) => {
+      indexApi.getThemesById(this.$route.query.id || 3).then((res) => {
+        this.$store.dispatch('menuName', { menuName: res.name });
         this.themesData = res;
+        loader.close();
       });
     },
-    handleCardClick(articlesId) {
-      this.$router.push({ name: 'articles', query: { id: articlesId } });
+    handleCardClick(detailsId) {
+      this.$router.push({ name: 'details', query: { id: detailsId } });
     },
   },
 };

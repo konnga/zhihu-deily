@@ -5,13 +5,15 @@
     flex-direction: row;
     background-color: rgba(249, 250, 255, 100);
     .active-btn-wrapper {
+      display: flex;
+      justify-content: flex-start;
       position: fixed;
       z-index: 1002;
       width: 100%;
-      padding: 20px;
+      margin: 5px 0 0 20px;
       color: rgb(255, 208, 75);
       height: 1.5rem;
-      background-image: linear-gradient(0deg,transparent,rgba(0,0,0,.51) 95%);
+      // background-image: linear-gradient(0deg,transparent,rgba(0,0,0,.51) 95%);
       cursor: pointer;
       i {
         font-size: 32px;
@@ -29,26 +31,41 @@
     &-content {
       max-width: 960px;
       margin: 0 auto;
+      &-title {
+        background: #5b7492;
+        color: rgb(255, 208, 75);
+        text-align: center;
+        font-size: 2rem; 
+        .time {
+          font-size: 1rem;
+        }
+      }
     }
   }
 </style>
 
 <template>
   <div class="layout">
-    <div class="active-btn-wrapper" @click="handleMenuActive">
-      <i :class="[isActive ? 'el-icon-circle-close' : 'el-icon-circle-plus' ]"></i>
+    <div class="active-btn-wrapper">
+      <div>
+        <i v-if="this.$route.path.includes('details')" class="el-icon-arrow-left" @click="handleBack"></i>
+        <i v-else :class="[isActive ? 'el-icon-circle-close' : 'el-icon-circle-plus']" @click="handleMenuActive"></i>
+      </div>
     </div>
     <div :class="['layout-menu', isActive ? 'layout-menu-active' : '']">
-      <menu-bar></menu-bar>
+      <menu-bar @menuSelect="menuSelect">
+      </menu-bar>
     </div>
     <div class="layout-content">
+      <div v-show="!$route.fullPath.includes('details')" class="layout-content-title">{{menuName}}<span class="time">{{days}}</span></div>
       <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
-import { Row, Col, Menu, MenuItem } from 'element-ui';
+import { Row, Col, Menu, MenuItem, Loading } from 'element-ui';
+import moment from 'moment';
 import MenuBar from './menu-bar/menu-bar';
 
 export default {
@@ -62,15 +79,29 @@ export default {
   },
   data() {
     return {
+      days: '',
       activeMenu: '/',
       isActive: false,
     };
   },
+  computed: {
+    menuName() {
+      return this.$store.state.app.menuName;
+    }
+  },
+  created() {
+    this.days = moment(new Date()).format('YYYY/MM/DD');
+  },
   methods: {
     handleMenuActive() {
-      console.log(this.$store.state);
       this.isActive = !this.isActive;
     },
+    handleBack() {
+      this.$router.back();
+    },
+    menuSelect() {
+      this.isActive = !this.isActive;
+    }
   },
 };
 </script>

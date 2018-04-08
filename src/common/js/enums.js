@@ -10,7 +10,7 @@ export default {
     },
     {
       path: '/themes?id=2',
-      name: '游戏日报',
+      name: '开始游戏',
     },
     {
       path: '/themes?id=7',

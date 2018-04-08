@@ -1,10 +1,10 @@
 <style lang="less">
-  .articles {
-    .articles-title {
+  .details {
+    .details-title {
       .text {
       }
     }
-    .articles-content {
+    .details-content {
       overflow: hidden;
       padding: 5%;
       .question {
@@ -34,24 +34,24 @@
 </style>
 
 <template>
-  <div class="articles">
+  <div class="details">
     <img-card
-      class="articles-title"
+      class="details-title"
       :imgUrl="articleDatas.image"
       :title="articleDatas.title"
     >
     </img-card>
-    <div class="articles-content" v-html="articleDatas.body"></div>
+    <div class="details-content" v-html="articleDatas.body"></div>
   </div>
 </template>
 
 <script>
 import indexApi from 'api@/index-api';
-import { Row, Col } from 'element-ui';
+import { Row, Col, Loading } from 'element-ui';
 import { imgCard } from '../../components/z-card';
 
 export default {
-  name: 'article',
+  name: 'detailss',
   components: {
     imgCard,
     [Row.name]: Row,
@@ -67,8 +67,16 @@ export default {
   },
   methods: {
     getArticleDetails() {
+      const loader =  Loading.service(
+        { 
+          background: '#ddd',
+          fullscreen: true,
+          text: '加载中...'
+        }
+      );
       indexApi.getArticleById(this.$route.query.id).then((res) => {
         this.articleDatas = res;
+        loader.close();
       });
     },
   },

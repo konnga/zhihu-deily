@@ -32,6 +32,7 @@
         :key="items.id"
         >
         <img-card
+          :id="items.id"
           :imgUrl="items.image"
           :title="items.title"
         >
@@ -51,7 +52,7 @@
 </template>
 
 <script>
-import { Row, Col, Carousel, CarouselItem } from 'element-ui';
+import { Row, Col, Carousel, CarouselItem, Loading } from 'element-ui';
 import moment from 'moment';
 import indexApi from 'api@/index-api';
 import { ZCard, imgCard } from '../../components/z-card';
@@ -82,15 +83,22 @@ export default {
       });
     },
     fetchList() {
-      this.$store.dispatch('loading', { loading: true });
+      const loader =  Loading.service(
+        { 
+          background: '#ddd',
+          fullscreen: true,
+          text: '加载中...'
+        }
+      );
       this.getCarouselNews();
       indexApi.getIndexList(moment(new Date()).format('YYYYMMDD')).then((res) => {
         this.daysData = res.stories;
-        this.$store.dispatch('loading', { loading: false });
+        this.$store.dispatch('menuName', { menuName: '首页' });
+        loader.close();
       });
     },
-    handleCardClick(articlesId) {
-      this.$router.push({ name: 'articles', query: { id: articlesId } });
+    handleCardClick(detailsId) {
+      this.$router.push({ name: 'details', query: { id: detailsId } });
     },
   },
 };

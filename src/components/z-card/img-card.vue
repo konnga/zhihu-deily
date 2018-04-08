@@ -7,16 +7,22 @@
       position: absolute;
       right: 0;
       bottom: 20%;
+      background: rgba(91, 116, 146, .5);
       color: #fff;
       padding: 20px;
       font-weight: 600;
       font-size: 28px;
+      border-radius: 20px 0 0 20px;
     }
   }
 </style>
 
 <template>
-  <div class="img-card">
+  <div
+    @click="handleClick"
+    class="img-card"
+    v-if="imgUrl"
+  >
     <img
       :src="imgUrl"
       :alt="title"
@@ -31,6 +37,10 @@
 export default {
   name: 'imgCard',
   props: {
+    id: {
+      type: Number,
+      default: '',
+    },
     imgUrl: {
       type: String,
       default: '',
@@ -48,6 +58,11 @@ export default {
       default: 'img',
     },
   },
+  methods: {
+    handleClick() {
+      this.$router.push({name: 'details', query: { id: this.id }})
+    }
+  }
 };
 </script>
 

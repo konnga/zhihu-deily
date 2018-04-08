@@ -34,10 +34,10 @@ const routes = [
         },
       },
       {
-        path: '/articles',
-        name: 'articles',
+        path: '/details',
+        name: 'details',
         component: (resolve) => {
-          require(['../../page/articles/articles.vue'], resolve);
+          require(['../../page/details/details.vue'], resolve);
         },
       },
     ],
