@@ -3,6 +3,7 @@
     margin: 0 auto;
     text-align: center;
     &_title {
+      margin-top: 2rem;
       font-weight: 700;
       font-size: 24px;
     }

@@ -20,7 +20,10 @@
 </style>
 
 <template>
-  <div>
+  <div
+    v-loading.fullscreen.lock="loading"
+    element-loading-text="玩命加载中..."
+  >
     <img-card
       :imgUrl="themesData.image"
       :title="themesData.description"
@@ -39,7 +42,7 @@
 </template>
 
 <script>
-import { Row, Col, Loading } from 'element-ui';
+import { Row, Col } from 'element-ui';
 import moment from 'moment';
 import indexApi from 'api@/index-api';
 import { ZCard, imgCard } from '../../components/z-card';
@@ -74,18 +77,11 @@ export default {
       });
     },
     fetchList() {
-      const loader =  Loading.service(
-        { 
-          background: '#ddd',
-          fullscreen: true,
-          text: '加载中...'
-        }
-      );
       this.getCarouselNews();
       indexApi.getThemesById(this.$route.query.id || 3).then((res) => {
         this.$store.dispatch('menuName', { menuName: res.name });
         this.themesData = res;
-        loader.close();
+        this.loading = false;
       });
     },
     handleCardClick(detailsId) {

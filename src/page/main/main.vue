@@ -20,7 +20,10 @@
 </style>
 
 <template>
-  <div>
+  <div
+    v-loading.fullscreen.lock="loading"
+    element-loading-text="玩命加载中..."
+  >
     <el-carousel
       height="400px"
       :autoplay="false"
@@ -52,7 +55,7 @@
 </template>
 
 <script>
-import { Row, Col, Carousel, CarouselItem, Loading } from 'element-ui';
+import { Row, Col, Carousel, CarouselItem } from 'element-ui';
 import moment from 'moment';
 import indexApi from 'api@/index-api';
 import { ZCard, imgCard } from '../../components/z-card';
@@ -71,6 +74,7 @@ export default {
     return {
       daysData: [],
       carouselList: [],
+      loading: true,
     };
   },
   created() {
@@ -83,18 +87,11 @@ export default {
       });
     },
     fetchList() {
-      const loader =  Loading.service(
-        { 
-          background: '#ddd',
-          fullscreen: true,
-          text: '加载中...'
-        }
-      );
       this.getCarouselNews();
       indexApi.getIndexList(moment(new Date()).format('YYYYMMDD')).then((res) => {
         this.daysData = res.stories;
         this.$store.dispatch('menuName', { menuName: '首页' });
-        loader.close();
+        this.loading = false;
       });
     },
     handleCardClick(detailsId) {

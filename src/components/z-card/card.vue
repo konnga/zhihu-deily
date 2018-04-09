@@ -61,7 +61,5 @@ export default {
       return `z-card ${this.mode === 'horizontal' ? 'z-card-horizontal' : ''}`;
     }
   },
-  methods: {
-  },
 };
 </script>

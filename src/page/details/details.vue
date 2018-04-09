@@ -1,9 +1,5 @@
 <style lang="less">
   .details {
-    .details-title {
-      .text {
-      }
-    }
     .details-content {
       overflow: hidden;
       padding: 5%;
@@ -34,7 +30,11 @@
 </style>
 
 <template>
-  <div class="details">
+  <div
+    v-loading.fullscreen.lock="loading"
+    element-loading-text="玩命加载中..."
+    class="details"
+  >
     <img-card
       class="details-title"
       :imgUrl="articleDatas.image"
@@ -47,7 +47,7 @@
 
 <script>
 import indexApi from 'api@/index-api';
-import { Row, Col, Loading } from 'element-ui';
+import { Row, Col } from 'element-ui';
 import { imgCard } from '../../components/z-card';
 
 export default {
@@ -60,6 +60,7 @@ export default {
   data() {
     return {
       articleDatas: {},
+      loading: true,
     };
   },
   created() {
@@ -67,16 +68,9 @@ export default {
   },
   methods: {
     getArticleDetails() {
-      const loader =  Loading.service(
-        { 
-          background: '#ddd',
-          fullscreen: true,
-          text: '加载中...'
-        }
-      );
       indexApi.getArticleById(this.$route.query.id).then((res) => {
         this.articleDatas = res;
-        loader.close();
+        this.loading = false;
       });
     },
   },

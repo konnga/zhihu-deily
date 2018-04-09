@@ -1,7 +1,7 @@
 {
   "name": "vue-zhihu",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "a Vue.js zhihu-deily project",
   "author": "‘wangjiacheng’ <wjc402402@163.com>",
   "private": true,
   "scripts": {
@@ -17,7 +17,6 @@
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "element-ui": "^2.2.1",
-    "express": "^4.16.3",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
     "vue": "^2.5.2",

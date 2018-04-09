@@ -88,7 +88,7 @@ export default {
   methods: {
     handleMenuSelect() {
       this.$emit('menuSelect');
-    }
-  }
+    },
+  },
 };
 </script>

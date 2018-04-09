@@ -38,10 +38,12 @@ export default {
   name: 'imgCard',
   props: {
     id: {
+      required: true,
       type: Number,
       default: 0,
     },
     imgUrl: {
+      required: true,
       type: String,
       default: '',
     },
@@ -54,6 +56,7 @@ export default {
       default: '100%',
     },
     title: {
+      required: true,
       type: String,
       default: 'img',
     },

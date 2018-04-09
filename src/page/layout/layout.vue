@@ -13,7 +13,6 @@
       margin: 5px 0 0 20px;
       color: rgb(255, 208, 75);
       height: 1.5rem;
-      // background-image: linear-gradient(0deg,transparent,rgba(0,0,0,.51) 95%);
       cursor: pointer;
       i {
         font-size: 32px;
@@ -53,20 +52,21 @@
       </div>
     </div>
     <div :class="['layout-menu', isActive ? 'layout-menu-active' : '']">
-      <menu-bar @menuSelect="menuSelect">
+      <menu-bar @menuSelect="handleMenuActive">
       </menu-bar>
     </div>
     <div class="layout-content">
-      <div v-show="!$route.fullPath.includes('details')" class="layout-content-title">{{menuName}}<span class="time">{{days}}</span></div>
+      <div v-show="hidePath" class="layout-content-title">{{menuName}}<span class="time">{{days}}</span></div>
       <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
-import { Row, Col, Menu, MenuItem, Loading } from 'element-ui';
+import { Row, Col, Menu, MenuItem } from 'element-ui';
 import moment from 'moment';
 import MenuBar from './menu-bar/menu-bar';
+import enums from '../../common/js/enums'
 
 export default {
   name: 'layout',
@@ -85,6 +85,12 @@ export default {
     };
   },
   computed: {
+    hidePath() {
+      const isHide = enums.hidePath.some((item) => {
+        return this.$route.path.includes(item)
+      })
+      return !isHide;
+    },
     menuName() {
       return this.$store.state.app.menuName;
     }
@@ -99,9 +105,6 @@ export default {
     handleBack() {
       this.$router.back();
     },
-    menuSelect() {
-      this.isActive = !this.isActive;
-    }
   },
 };
 </script>

@@ -29,4 +29,8 @@ export default {
       name: '关于',
     },
   ],
+  hidePath: [
+    'details',
+    'about',
+  ],
 };

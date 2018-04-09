@@ -27,13 +27,6 @@ const routes = [
         },
       },
       {
-        path: '/about',
-        name: 'about',
-        component: (resolve) => {
-          require(['../../page/about/aboutus.vue'], resolve);
-        },
-      },
-      {
         path: '/details',
         name: 'details',
         component: (resolve) => {
