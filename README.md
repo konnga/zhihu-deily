@@ -20,7 +20,7 @@ npm run dev
 * # 3.准备工作
   * <a href="./book/准备工作.md##3.1 构建项目">构建项目</a>
   * <a href="./book/准备工作.md## 3.2 项目的初始化配置">项目的初始化配置</a>
-  * <a href="./book/准备工作.md## 3.3 项目目录结构">项目目录结构</a>
+  * <a href="./book/准备工作.md## 3.3 项目目录结构">项目目录结构</a>
   * <a href="./book/准备工作.md## 3.4 安装ElementUI等依赖">安装ElementUI等依赖</a>
   * <a href="./book/准备工作.md## 3.5 启动项目">启动项目</a>
 * # 4.配置相关依赖
@@ -28,7 +28,7 @@ npm run dev
     * <a href="./book/配置相关依赖.md## 4.2 配置elementUI">配置elementUI</a>
 * # 5.调整项目结构
     * <a href="./book/调整项目结构.md## 5.1 更改入口文件">更改入口文件</a>
-    * <a href="./book/调整项目结构.md## 5.2 更改项目结构">更改项目结构</a>
+    * <a href="./book/调整项目结构.md## 5.2 更改项目结构">更改项目结构</a>
 * # 6. 设置API请求和路由
   * <a href="./book/设置API请求和路由.md## 6.1 启动项目">跨域问题</a>
   * <a href="./book/设置API请求和路由.md## 6.2 图片防盗链">图片防盗链</a>
